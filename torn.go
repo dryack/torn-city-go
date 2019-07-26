@@ -1,7 +1,6 @@
 package torn
 
 import (
-	"encoding/json"
 	"strconv"
 	"strings"
 )
@@ -226,18 +225,7 @@ func (s *Session) QueryTorn(IDs []int, args ...string) (tornData *Torn, err erro
 		qIDs += strconv.Itoa(ID) + ","
 	}
 	qIDs = strings.TrimSuffix(qIDs, ",")
-
-	var selections string
-	for _, arg := range args {
-		selections += arg + ","
-	}
-	selections = strings.TrimSuffix(selections, ",")
-
-	data, err := s.callAPI(apiTorn+endpoint(qIDs), map[string]string{"selections": selections})
-	if err != nil {
-		return
-	}
 	tornData = &Torn{}
-	json.Unmarshal(data, tornData)
+	err = s.query(apiTorn, tornData, qIDs, args...)
 	return
 }

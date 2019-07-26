@@ -1,9 +1,7 @@
 package torn
 
 import (
-	"encoding/json"
 	"strconv"
-	"strings"
 )
 
 type companyWrapper struct {
@@ -70,23 +68,8 @@ type Company struct {
 // QueryCompany can take multiple additional options for addition data.
 // See https://www.torn.com/api.html
 func (s *Session) QueryCompany(ID int, args ...string) (company *Company, err error) {
-	var companyID string
-	if ID != 0 {
-		companyID = strconv.Itoa(ID)
-	}
-
-	var selections string
-	for _, arg := range args {
-		selections += arg + ","
-	}
-	selections = strings.TrimSuffix(selections, ",")
-
-	data, err := s.callAPI(apiCompany+endpoint(companyID), map[string]string{"selections": selections})
-	if err != nil {
-		return
-	}
 	wrapper := &companyWrapper{}
-	json.Unmarshal(data, wrapper)
+	err = s.query(apiCompany, wrapper, strconv.Itoa(ID), args...)
 	company = wrapper.Data
 	return
 }

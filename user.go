@@ -1,10 +1,6 @@
 package torn
 
-import (
-	"encoding/json"
-	"strconv"
-	"strings"
-)
+import "strconv"
 
 // User represents all data of a Torn user
 type User struct {
@@ -479,22 +475,7 @@ type User struct {
 // QueryUser can take multiple additional options for addition data.
 // See https://www.torn.com/api.html
 func (s *Session) QueryUser(ID int, args ...string) (user *User, err error) {
-	var userID string
-	if ID != 0 {
-		userID = strconv.Itoa(ID)
-	}
-
-	var selections string
-	for _, arg := range args {
-		selections += arg + ","
-	}
-	selections = strings.TrimSuffix(selections, ",")
-
-	data, err := s.callAPI(apiUser+endpoint(userID), map[string]string{"selections": selections})
-	if err != nil {
-		return
-	}
 	user = &User{}
-	json.Unmarshal(data, user)
+	err = s.query(apiUser, user, strconv.Itoa(ID), args...)
 	return
 }
