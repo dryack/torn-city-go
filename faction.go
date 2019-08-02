@@ -1,9 +1,7 @@
 package torn
 
 import (
-	"encoding/json"
 	"strconv"
-	"strings"
 )
 
 // Faction represents all data of a Torn faction
@@ -43,22 +41,7 @@ type Faction struct {
 // QueryFaction can take multiple additional options for addition data.
 // See https://www.torn.com/api.html
 func (s *Session) QueryFaction(ID int, args ...string) (faction *Faction, err error) {
-	var factionID string
-	if ID != 0 {
-		factionID = strconv.Itoa(ID)
-	}
-
-	var selections string
-	for _, arg := range args {
-		selections += arg + ","
-	}
-	selections = strings.TrimSuffix(selections, ",")
-
-	data, err := s.callAPI(apiFaction+endpoint(factionID), map[string]string{"selections": selections})
-	if err != nil {
-		return
-	}
 	faction = &Faction{}
-	json.Unmarshal(data, faction)
+	err = s.query(apiFaction, faction, strconv.Itoa(ID), args...)
 	return
 }

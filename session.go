@@ -1,8 +1,10 @@
 package torn
 
 import (
+	"encoding/json"
 	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
 // Type definition for parameter usage
@@ -49,5 +51,20 @@ func (s *Session) callAPI(api endpoint, args map[string]string) (data []byte, er
 	if err == nil {
 		data, err = ioutil.ReadAll(resp.Body)
 	}
+	return
+}
+
+func (s *Session) query(source endpoint, t interface{}, id string, args ...string) (err error) {
+	var selections string
+	for _, arg := range args {
+		selections += arg + ","
+	}
+	selections = strings.TrimSuffix(selections, ",")
+
+	data, err := s.callAPI(source+endpoint(id), map[string]string{"selections": selections})
+	if err != nil {
+		return
+	}
+	err = json.Unmarshal(data, t)
 	return
 }

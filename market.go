@@ -1,9 +1,7 @@
 package torn
 
 import (
-	"encoding/json"
 	"strconv"
-	"strings"
 )
 
 // Market represents market listing data
@@ -30,22 +28,7 @@ type Market struct {
 // An item ID is not necessary for the points market.
 // See https://www.torn.com/api.html
 func (s *Session) QueryMarket(ID int, args ...string) (market *Market, err error) {
-	var itemID string
-	if ID != 0 {
-		itemID = strconv.Itoa(ID)
-	}
-
-	var selections string
-	for _, arg := range args {
-		selections += arg + ","
-	}
-	selections = strings.TrimSuffix(selections, ",")
-
-	data, err := s.callAPI(apiMarket+endpoint(itemID), map[string]string{"selections": selections})
-	if err != nil {
-		return
-	}
 	market = &Market{}
-	json.Unmarshal(data, market)
+	err = s.query(apiMarket, market, strconv.Itoa(ID), args...)
 	return
 }

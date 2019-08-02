@@ -1,7 +1,6 @@
 package torn
 
 import (
-	"encoding/json"
 	"strconv"
 )
 
@@ -29,17 +28,8 @@ type Property struct {
 // QueryProperty returns data for a specific Torn property, by ID.
 // See https://www.torn.com/api.html
 func (s *Session) QueryProperty(ID int) (property *Property, err error) {
-	var propertyID string
-	if ID != 0 {
-		propertyID = strconv.Itoa(ID)
-	}
-
-	data, err := s.callAPI(apiProperties+endpoint(propertyID), nil)
-	if err != nil {
-		return
-	}
 	wrapper := &propertyWrapper{}
-	json.Unmarshal(data, wrapper)
+	err = s.query(apiProperties, wrapper, strconv.Itoa(ID))
 	property = wrapper.Data
 	return
 }
