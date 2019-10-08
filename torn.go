@@ -204,6 +204,10 @@ type Torn struct {
 		AvailableShares int    `json:"available_shares"`
 		Forecast        string `json:"forecast"`
 		Demand          string `json:"demand"`
+		Benefit         struct {
+			Requirement int    `json:"requirement"`
+			Description string `json:"description"`
+		} `json:"benefit,omitempty"`
 	} `json:"stocks"`
 	FactionTree map[string]map[string]*struct {
 		Branch    string `json:"branch"`
