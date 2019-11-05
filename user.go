@@ -469,11 +469,6 @@ type User struct {
 	} `json:"discord"`
 	ActiveGym int `json:"active_gym"`
 	Timestamp int `json:"timestamp"`
-	Attacks   map[string]*struct {
-		Name   string `json:"attacker_name"`
-		Result string `json:"result"`
-		Chain  int    `json:"chain"`
-	} `json:"Attacks"`
 }
 
 // QueryUser returns data for a specific Torn user, by ID.
