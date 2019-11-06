@@ -370,7 +370,7 @@ type User struct {
 		RespectGain         string `json:"respect_gain"`
 		Chain               int    `json:"chain"`
 		Modifiers           struct {
-			FairFight   int    `json:"fairFight"`
+			FairFight   string    `json:"fairFight"`
 			War         int    `json:"war"`
 			Retaliation int    `json:"retaliation"`
 			GroupAttack int    `json:"groupAttack"`
