@@ -369,14 +369,16 @@ type User struct {
 		Stealthed           int    `json:"stealthed"`
 		RespectGain         string `json:"respect_gain"`
 		Chain               int    `json:"chain"`
-		Modifiers           struct {
-			FairFight   string    `json:"fairFight"`
-			War         int    `json:"war"`
-			Retaliation int    `json:"retaliation"`
-			GroupAttack int    `json:"groupAttack"`
-			Overseas    int    `json:"overseas"`
-			ChainBonus  string `json:"chainBonus"`
-		} `json:"modifiers"`
+		/*
+			Modifiers           struct {
+				FairFight   string    `json:"fairFight"`
+				War         int    `json:"war"`
+				Retaliation int    `json:"retaliation"`
+				GroupAttack int    `json:"groupAttack"`
+				Overseas    int    `json:"overseas"`
+				ChainBonus  string `json:"chainBonus"`
+			} `json:"modifiers"`
+		*/
 	} `json:"attacks"`
 	Revives map[string]*struct {
 	} `json:"revives"` // TODO
