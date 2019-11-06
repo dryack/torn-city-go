@@ -50,6 +50,7 @@ func (s *Session) callAPI(api endpoint, args map[string]string) (data []byte, er
 	resp, err := http.Get(url)
 	if err == nil {
 		data, err = ioutil.ReadAll(resp.Body)
+		resp.Body.Close()
 	}
 	return
 }
