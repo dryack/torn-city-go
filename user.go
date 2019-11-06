@@ -367,8 +367,8 @@ type User struct {
 		DefenderFactionName string `json:"defender_factionname,omitempty"`
 		Result              string `json:"result"`
 		Stealthed           int    `json:"stealthed"`
-		RespectGain         string `json:"respect_gain"`
-		Chain               int    `json:"chain"`
+		// RespectGain         string `json:"respect_gain"`
+		Chain int `json:"chain"`
 		/*
 			Modifiers           struct {
 				FairFight   string    `json:"fairFight"`
