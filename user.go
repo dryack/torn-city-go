@@ -355,15 +355,15 @@ type User struct {
 		FullTime  int `json:"fulltime"`
 	} `json:"chain"`
 	AttackDetails map[string]*struct {
-		TimestampStarted    int    `json:"timestamp_started"`
-		TimestampEnded      int    `json:"timestamp_ended"`
-		AttackerID          int    `json:"attacker_id"`
-		AttackerName        string `json:"attacker_name"`
-		AttackerFactionID   int    `json:"attacker_faction"`
-		AttackerFactionName string `json:"attacker_factionname"`
-		DefenderID          int    `json:"defender_id"`
-		DefenderName        string `json:"defender_name"`
-		DefenderFactionID   int    `json:"defender_faction"`
+		TimestampStarted int `json:"timestamp_started"`
+		TimestampEnded   int `json:"timestamp_ended"`
+		//AttackerID          int    `json:"attacker_id"`
+		AttackerName string `json:"attacker_name"`
+		//AttackerFactionID   int    `json:"attacker_faction"`
+		AttackerFactionName string `json:"attacker_factionname,omitempty"`
+		//DefenderID          int    `json:"defender_id"`
+		DefenderName string `json:"defender_name,omitempty"`
+		//DefenderFactionID   int    `json:"defender_faction"`
 		DefenderFactionName string `json:"defender_factionname,omitempty"`
 		Result              string `json:"result"`
 		Stealthed           int    `json:"stealthed"`
