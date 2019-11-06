@@ -364,10 +364,10 @@ type User struct {
 		DefenderID          int    `json:"defender_id"`
 		DefenderName        string `json:"defender_name"`
 		DefenderFactionID   int    `json:"defender_faction"`
-		DefenderFactionName int    `json:"defender_factionname"`
+		DefenderFactionName string `json:"defender_factionname,omitempty"`
 		Result              string `json:"result"`
 		Stealthed           int    `json:"stealthed"`
-		RespectGain         int    `json:"respect_gain"`
+		RespectGain         string `json:"respect_gain"`
 		Chain               int    `json:"chain"`
 		Modifiers           struct {
 			FairFight   int    `json:"fairFight"`
