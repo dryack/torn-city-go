@@ -62,7 +62,10 @@ func (s *Session) query(source endpoint, t interface{}, id string, args ...strin
 	}
 	selections = strings.TrimSuffix(selections, ",")
 
-	data, err := s.callAPI(source+endpoint(id), map[string]string{"selections": selections})
+	if id != "0" {
+		source += endpoint(id)
+	}
+	data, err := s.callAPI(source, map[string]string{"selections": selections})
 	if err != nil {
 		return
 	}
