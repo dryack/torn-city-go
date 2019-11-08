@@ -358,15 +358,15 @@ type User struct {
 		TimestampStarted int `json:"timestamp_started"`
 		TimestampEnded   int `json:"timestamp_ended"`
 		//AttackerID          int    `json:"attacker_id"`
-		AttackerName string `json:"attacker_name"`
+		AttackerName *string `json:"attacker_name"`
 		//AttackerFactionID   int    `json:"attacker_faction"`
-		AttackerFactionName string `json:"attacker_factionname,omitempty"`
+		AttackerFactionName *string `json:"attacker_factionname,omitempty"`
 		//DefenderID          int    `json:"defender_id"`
-		DefenderName string `json:"defender_name,omitempty"`
+		DefenderName *string `json:"defender_name,omitempty"`
 		//DefenderFactionID   int    `json:"defender_faction"`
-		DefenderFactionName string `json:"defender_factionname,omitempty"`
-		Result              string `json:"result"`
-		Stealthed           int    `json:"stealthed"`
+		DefenderFactionName *string `json:"defender_factionname,omitempty"`
+		Result              *string `json:"result"`
+		Stealthed           int     `json:"stealthed"`
 		// RespectGain         string `json:"respect_gain"`
 		Chain int `json:"chain"`
 		/*
